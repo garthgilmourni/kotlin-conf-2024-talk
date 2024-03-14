@@ -66,7 +66,7 @@ suspend fun fetchContent(client: HttpClient): String {
 @Preview
 fun App() {
     val content = remember { mutableStateOf("Starting value") }
-    val logMessages = remember { mutableListOf<String>() }
+    val logMessages = remember { mutableStateListOf<String>() }
     val client = remember { buildClient(logMessages) }
     val scope = rememberCoroutineScope()
 
