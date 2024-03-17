@@ -3,6 +3,7 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.jetbrainsCompose)
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.23"
 }
 
 kotlin {
@@ -25,6 +26,11 @@ kotlin {
 
             implementation("io.ktor:ktor-client-core:2.3.9")
             implementation("io.ktor:ktor-client-cio:2.3.9")
+            implementation("io.ktor:ktor-client-serialization:2.3.9")
+            implementation("io.ktor:ktor-client-content-negotiation:2.3.9")
+            implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.9")
+            implementation("io.ktor:ktor-client-encoding:2.3.9")
+
             implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.0-RC.2")
         }
     }

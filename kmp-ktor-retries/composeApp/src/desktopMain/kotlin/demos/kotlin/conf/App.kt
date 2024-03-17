@@ -1,3 +1,5 @@
+package demos.kotlin.conf
+
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -15,10 +17,13 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.ktor.client.*
+import io.ktor.client.call.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
+import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
+import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.launch
 import kotlinx.datetime.*
 import kotlinx.datetime.format.char
@@ -40,6 +45,9 @@ fun currentTime(): String {
 
 fun buildClient(logMessages: MutableList<String>): HttpClient {
     val client = HttpClient(CIO) {
+        install(ContentNegotiation) {
+            json()
+        }
         install(HttpRequestRetry) {
             retryOnServerErrors(maxRetries = 5)
             delayMillis { retry ->
@@ -59,7 +67,9 @@ fun buildClient(logMessages: MutableList<String>): HttpClient {
 }
 
 suspend fun fetchContent(client: HttpClient): String {
-    return client.get("http://0.0.0.0:8080/").bodyAsText()
+    val response = client.get("http://0.0.0.0:8080/fetch-questions/2635682")
+    val questions: List<Question> = response.body()
+    return "User has asked ${questions.size} questions"
 }
 
 @Composable

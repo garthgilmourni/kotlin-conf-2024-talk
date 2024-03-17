@@ -1,3 +1,5 @@
+package demos.kotlin.conf
+
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowState
@@ -7,7 +9,7 @@ fun main() = application {
     Window(
         state = WindowState(width = 600.dp, height = 300.dp),
         onCloseRequest = ::exitApplication,
-        title = "kmp-ktor-retries"
+        title = "KMP Retries Client"
     ) {
         App()
     }
