@@ -14,7 +14,8 @@ repositories {
 }
 
 kotlin {
-    macosArm64 {
+    macosX64() {
+    //macosArm64 {
         binaries {
             executable()
         }
