@@ -2,6 +2,7 @@ package demos.kotlin.conf
 
 import demos.kotlin.conf.plugins.configureRouting
 import demos.kotlin.conf.plugins.configureSerialization
+import demos.kotlin.conf.plugins.opentelemetry.configureOpenTelemetry
 import io.ktor.client.engine.cio.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
@@ -19,4 +20,5 @@ fun main() {
 fun Application.module() {
     configureSerialization(CIO.create())
     configureRouting()
+    configureOpenTelemetry()
 }
